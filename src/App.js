@@ -1,16 +1,29 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Signup from "./pages/Signup";
 import Signin from "./pages/SignIn";
+import { createGlobalStyle } from "styled-components";
+
+const GlobalStyle = createGlobalStyle`
+  body, #root, #root > div {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+`;
 
 function App() {
   return (
     <Router>
-      <Route exact path="/">
-        <Redirect to="/signup" />
-      </Route>
-      <Route path="/signup" component={Signup} />
-      <Route path="/signin" component={Signin} />
+      <>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/" element={<Signup />} />
+        </Routes>
+      </>
     </Router>
   );
 }
