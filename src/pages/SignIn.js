@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { API_URL } from "../App";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setEmailValid] = useState(false);
   const [isPasswordValid, setPasswordValid] = useState(false);
+  const navigate = useNavigate();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -16,12 +19,35 @@ const Signin = () => {
     setPasswordValid(e.target.value.length >= 8);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isEmailValid && isPasswordValid) {
-      console.log("Signup successful");
+    try {
+      const response = await fetch(`${API_URL}/auth/signin`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      console.log(response.ok);
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        const accessToken = data.access_token;
+        console.log(accessToken);
+        localStorage.setItem("accessToken", accessToken);
+        navigate("/todo");
+      } else {
+        console.log("Login failed");
+      }
+    } catch (error) {
+      console.error("Error occurred during login:", error);
     }
-    // 유효성 검사 및 로그인 처리 로직 구현
   };
 
   return (
