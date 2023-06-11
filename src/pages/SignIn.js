@@ -21,6 +21,8 @@ const Signin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    // 유효성 검사 및 로그인 처리 로직 구현
+    // 이메일과 비밀번호 검사 후 로그인 요청을 보내고, 성공 시 todo 페이지로 이동
     try {
       const response = await fetch(`${API_URL}/auth/signin`, {
         method: "POST",
@@ -32,14 +34,9 @@ const Signin = () => {
           password,
         }),
       });
-
-      console.log(response.ok);
-
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
         const accessToken = data.access_token;
-        console.log(accessToken);
         localStorage.setItem("accessToken", accessToken);
         navigate("/todo");
       } else {
