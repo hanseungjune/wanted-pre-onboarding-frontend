@@ -20,8 +20,6 @@ const Signin = () => {
     e.preventDefault();
     if (isEmailValid && isPasswordValid) {
       console.log("Signup successful");
-    } else {
-      console.log("Signup Failure");
     }
     // 유효성 검사 및 로그인 처리 로직 구현
   };

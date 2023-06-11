@@ -20,9 +20,6 @@ const Signup = () => {
     e.preventDefault();
     // 유효성 검사 및 회원가입 처리 로직 구현
     if (isEmailValid && isPasswordValid) {
-      console.log("Signup successful");
-    } else {
-      console.log("Signup Failure");
     }
     // 이메일과 비밀번호 검사 후 회원가입 요청을 보내고, 성공 시 로그인 페이지로 이동
   };
