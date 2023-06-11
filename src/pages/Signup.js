@@ -22,6 +22,7 @@ const Signup = () => {
     <div>
       <h2>회원가입</h2>
       <form onSubmit={handleSubmit}>
+        <h5>아이디</h5>
         <input
           type="email"
           value={email}
@@ -29,6 +30,7 @@ const Signup = () => {
           placeholder="이메일"
           data-testid="email-input"
         />
+        <h5>비밀번호</h5>
         <input
           type="password"
           value={password}
