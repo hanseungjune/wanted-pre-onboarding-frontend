@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../App";
+import TodoList from "../components/TodoList";
 
 const Todo = () => {
   const [todos, setTodos] = useState([]);
@@ -168,55 +169,6 @@ const Todo = () => {
       }}
     >
       <h2>투두 리스트</h2>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            {editingTodoId === todo.id ? (
-              <div>
-                <input
-                  type="text"
-                  value={editingTodoText}
-                  onChange={(e) => setEditingTodoText(e.target.value)}
-                  data-testid="modify-input"
-                />
-                <button
-                  onClick={() => handleSubmitEdit(todo.id)}
-                  data-testid="submit-button"
-                >
-                  제출
-                </button>
-                <button onClick={handleCancelEdit} data-testid="cancel-button">
-                  취소
-                </button>
-              </div>
-            ) : (
-              <>
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={todo.isCompleted}
-                    onChange={() => handleToggleComplete(todo.id)}
-                  />
-                  <span>{todo.todo}</span>
-                </label>
-                <button
-                  onClick={() => handleEditTodo(todo.id)}
-                  data-testid="modify-button"
-                >
-                  수정
-                </button>
-                <button
-                  onClick={() => handleDeleteTodo(todo.id)}
-                  data-testid="delete-button"
-                >
-                  삭제
-                </button>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-
       <div>
         <input
           type="text"
@@ -228,6 +180,17 @@ const Todo = () => {
           추가
         </button>
       </div>
+      <TodoList
+        todos={todos}
+        editingTodoId={editingTodoId}
+        editingTodoText={editingTodoText}
+        handleToggleComplete={handleToggleComplete}
+        handleEditTodo={handleEditTodo}
+        handleDeleteTodo={handleDeleteTodo}
+        handleCancelEdit={handleCancelEdit}
+        handleSubmitEdit={handleSubmitEdit}
+        setEditingTodoText={setEditingTodoText}
+      />
     </div>
   );
 };
