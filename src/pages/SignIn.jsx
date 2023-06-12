@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../App";
+import styles from "../styles/signin.module.css";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
@@ -57,30 +58,16 @@ const Signin = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <div className={styles["signup-container"]}>
       <h2>로그인</h2>
-      <form
-        onSubmit={handleSubmit}
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <form onSubmit={handleSubmit} className={styles["signup-form"]}>
         <input
           type="email"
           value={email}
           onChange={handleEmailChange}
           placeholder="이메일"
           data-testid="email-input"
+          className={styles["input"]}
         />
         <input
           type="password"
@@ -88,13 +75,23 @@ const Signin = () => {
           onChange={handlePasswordChange}
           placeholder="비밀번호"
           data-testid="password-input"
+          className={styles["input"]}
         />
         <button
           type="submit"
           data-testid="signup-button"
           disabled={!isEmailValid || !isPasswordValid}
+          className={styles["button"]}
         >
-          회원가입
+          로그인
+        </button>
+        <button
+          className={styles["button"]}
+          onClick={() => {
+            navigate("/signup");
+          }}
+        >
+          회원가입 페이지
         </button>
       </form>
     </div>

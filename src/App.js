@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+
+  * {
+    margin: 0;
+    box-sizing: border-box;
+  }
 `;
 
 export const API_URL = `https://www.pre-onboarding-selection-task.shop`;

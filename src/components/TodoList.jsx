@@ -12,7 +12,14 @@ const TodoList = ({
   setEditingTodoText,
 }) => {
   return (
-    <ul>
+    <ul
+      style={{
+        width: "300px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "flex-start",
+      }}
+    >
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}

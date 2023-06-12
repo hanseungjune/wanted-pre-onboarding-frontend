@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../App";
 import TodoList from "../components/TodoList";
+import styles from "../styles/todo.module.css";
 
 const Todo = () => {
   const [todos, setTodos] = useState([]);
@@ -160,23 +161,21 @@ const Todo = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <h2>투두 리스트</h2>
-      <div>
+    <div className={styles["todo-container"]}>
+      <h2>My TodoList</h2>
+      <div className={styles["add-todo"]}>
         <input
           type="text"
           value={newTodo}
           onChange={handleInputChange}
           data-testid="new-todo-input"
+          className={styles["input"]}
         />
-        <button onClick={handleAddTodo} data-testid="new-todo-add-button">
+        <button
+          onClick={handleAddTodo}
+          data-testid="new-todo-add-button"
+          className={styles["button"]}
+        >
           추가
         </button>
       </div>
@@ -190,6 +189,7 @@ const Todo = () => {
         handleCancelEdit={handleCancelEdit}
         handleSubmitEdit={handleSubmitEdit}
         setEditingTodoText={setEditingTodoText}
+        className={styles["todo-list"]}
       />
     </div>
   );
