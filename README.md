@@ -20,4 +20,4 @@
 
 ## 배포
 
-https://main--leafy-kleicha-bc6900.netlify.app/
+https://wanted-pre-onboarding-frontend-beta-six.vercel.app/signup
