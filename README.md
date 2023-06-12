@@ -14,7 +14,7 @@
 
 ## 데모 영상
 
-`링크`
+![Alt text](wanted_todolist.gif)
 
 <br/>
 
