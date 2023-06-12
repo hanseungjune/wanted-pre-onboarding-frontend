@@ -73,6 +73,27 @@ const Todo = () => {
     }
   };
 
+  const handleDeleteTodo = async (todoId) => {
+    const access_token = localStorage.getItem("access_token");
+
+    try {
+      const response = await fetch(`${API_URL}/todos/${todoId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      });
+
+      if (response.status === 204) {
+        setTodos(todos.filter((todo) => todo.id !== todoId));
+      } else {
+        console.log("Failed to delete todo");
+      }
+    } catch (error) {
+      console.error("Error occurred while deleting todo:", error);
+    }
+  };
+
   const handleToggleComplete = async (todoId) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === todoId) {
@@ -144,7 +165,7 @@ const Todo = () => {
                   수정
                 </button>
                 <button
-                  //   onClick={() => handleDeleteTodo(todo.id)}
+                  onClick={() => handleDeleteTodo(todo.id)}
                   data-testid="delete-button"
                 >
                   삭제
