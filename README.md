@@ -21,4 +21,4 @@
 
 ## 배포
 
-https://wanted-pre-onboarding-frontend-beta-six.vercel.app
+https://wanted-pre-onboarding-frontend-vpgo.vercel.app/
