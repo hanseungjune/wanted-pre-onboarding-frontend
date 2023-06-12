@@ -5,6 +5,8 @@ import { API_URL } from "../App";
 const Todo = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
+  const [editingTodoId, setEditingTodoId] = useState(null);
+  const [editingTodoText, setEditingTodoText] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -85,9 +87,11 @@ const Todo = () => {
     setTodos(updatedTodos);
   };
 
-  useEffect(() => {
-    todos.forEach((todo) => console.log(todo));
-  }, [todos]);
+  const handleEditTodo = (todoId) => {
+    const todoToEdit = todos.find((todo) => todo.id === todoId);
+    setEditingTodoId(todoId);
+    setEditingTodoText(todoToEdit.todo);
+  };
 
   return (
     <div
@@ -102,14 +106,51 @@ const Todo = () => {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={todo.isCompleted}
-                onChange={() => handleToggleComplete(todo.id)}
-              />
-              <span>{todo.todo}</span>
-            </label>
+            {editingTodoId === todo.id ? (
+              <div>
+                <input
+                  type="text"
+                  value={editingTodoText}
+                  onChange={(e) => setEditingTodoText(e.target.value)}
+                  data-testid="modify-input"
+                />
+                <button
+                  //   onClick={() => handleSubmitEdit(todo.id)}
+                  data-testid="submit-button"
+                >
+                  제출
+                </button>
+                <button
+                  // onClick={handleCancelEdit}
+                  data-testid="cancel-button"
+                >
+                  취소
+                </button>
+              </div>
+            ) : (
+              <>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={todo.isCompleted}
+                    onChange={() => handleToggleComplete(todo.id)}
+                  />
+                  <span>{todo.todo}</span>
+                </label>
+                <button
+                  onClick={() => handleEditTodo(todo.id)}
+                  data-testid="modify-button"
+                >
+                  수정
+                </button>
+                <button
+                  //   onClick={() => handleDeleteTodo(todo.id)}
+                  data-testid="delete-button"
+                >
+                  삭제
+                </button>
+              </>
+            )}
           </li>
         ))}
       </ul>
