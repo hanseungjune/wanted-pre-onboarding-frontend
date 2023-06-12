@@ -2,25 +2,28 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../App";
 
-const Signin = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setEmailValid] = useState(false);
   const [isPasswordValid, setPasswordValid] = useState(false);
   const navigate = useNavigate();
 
+  // 토큰 있으면, /todo로 가기
   useEffect(() => {
-    const accessToken = localStorage.getItem("accessToken");
+    const accessToken = localStorage.getItem("access_token");
     if (accessToken) {
       navigate("/todo");
     }
   }, [navigate]);
 
+  // 입력값 받기 및 유효성 검사
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailValid(e.target.value.includes("@"));
   };
 
+  // 입력값 받기 및 유효성 검사
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordValid(e.target.value.length >= 8);
@@ -28,29 +31,29 @@ const Signin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // 유효성 검사 및 로그인 처리 로직 구현
-    // 이메일과 비밀번호 검사 후 로그인 요청을 보내고, 성공 시 todo 페이지로 이동
-    try {
-      const response = await fetch(`${API_URL}/auth/signin`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
-      });
-      if (response.ok) {
-        const data = await response.json();
-        const accessToken = data.access_token;
-        localStorage.setItem("accessToken", accessToken);
-        navigate("/todo");
-      } else {
-        console.log("Login failed");
+    // 유효성 검사 및 회원가입 처리 로직 구현
+    // 이메일과 비밀번호 검사 후 회원가입 요청을 보내고, 성공 시 로그인 페이지로 이동
+    if (isEmailValid && isPasswordValid) {
+      try {
+        const response = await fetch(`${API_URL}/auth/signup`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            password,
+          }),
+        });
+        if (response.status === 201) {
+          console.log("Signup successful");
+          navigate("/signin");
+        } else {
+          console.log("Signup failed");
+        }
+      } catch (error) {
+        console.error("Error occurred during signup:", error);
       }
-    } catch (error) {
-      console.error("Error occurred during login:", error);
     }
   };
 
@@ -63,7 +66,7 @@ const Signin = () => {
         alignItems: "center",
       }}
     >
-      <h2>로그인</h2>
+      <h2>회원가입</h2>
       <form
         onSubmit={handleSubmit}
         style={{
@@ -99,4 +102,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;
