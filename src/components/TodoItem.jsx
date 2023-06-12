@@ -27,14 +27,14 @@ const TodoItem = ({
             data-testid="submit-button"
             className={styles["submit-button"]}
           >
-            제출
+            Submit
           </button>
           <button
             onClick={handleCancelEdit}
             data-testid="cancel-button"
             className={styles["cancel-button"]}
           >
-            취소
+            Cancel
           </button>
         </div>
       ) : (
@@ -53,14 +53,14 @@ const TodoItem = ({
             data-testid="modify-button"
             className={styles["modify-button"]}
           >
-            수정
+            Edit
           </button>
           <button
             onClick={() => handleDeleteTodo(todo.id)}
             data-testid="delete-button"
             className={styles["delete-button"]}
           >
-            삭제
+            Delete
           </button>
         </div>
       )}

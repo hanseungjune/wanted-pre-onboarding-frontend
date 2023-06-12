@@ -1,22 +1,20 @@
 import { useNavigate } from "react-router-dom";
+import styles from "../styles/home.module.css";
 
-const Signin = () => {
+const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <h2>홈</h2>
-      <button onClick={() => navigate("/signup")}>회원가입</button>
-      <button onClick={() => navigate("/signin")}>로그인</button>
+    <div className={styles["signin-container"]}>
+      <h2>Home</h2>
+      <button className={styles["button"]} onClick={() => navigate("/signup")}>
+        SignUp
+      </button>
+      <button className={styles["button"]} onClick={() => navigate("/signin")}>
+        SignIn
+      </button>
     </div>
   );
 };
 
-export default Signin;
+export default Home;

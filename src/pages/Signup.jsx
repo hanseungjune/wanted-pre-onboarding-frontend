@@ -60,7 +60,7 @@ const Signup = () => {
 
   return (
     <div className={styles["signup-container"]}>
-      <h2>회원가입</h2>
+      <h2>SignUp</h2>
       <form onSubmit={handleSubmit} className={styles["signup-form"]}>
         <input
           type="email"
@@ -84,7 +84,7 @@ const Signup = () => {
           disabled={!isEmailValid || !isPasswordValid}
           className={styles["button"]}
         >
-          회원가입
+          Submit
         </button>
         <button
           className={styles["button"]}
@@ -92,7 +92,7 @@ const Signup = () => {
             navigate("/signin");
           }}
         >
-          로그인 페이지
+          SignIn Page
         </button>
       </form>
     </div>

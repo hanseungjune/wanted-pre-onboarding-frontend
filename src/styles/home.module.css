@@ -1,0 +1,26 @@
+.signin-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-container h2 {
+  margin-bottom: 10px;
+}
+
+.button {
+  width: 120px;
+  height: 30px;
+  margin-top: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #e0e0e0;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.button:hover {
+  background-color: #bdbdbd;
+}
