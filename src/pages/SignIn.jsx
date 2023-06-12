@@ -85,7 +85,7 @@ const Signin = () => {
         {/* 로그인 버튼 */}
         <button
           type="submit"
-          data-testid="signup-button"
+          data-testid="signin-button"
           disabled={!isEmailValid || !isPasswordValid}
           className={styles["button"]}
         >
