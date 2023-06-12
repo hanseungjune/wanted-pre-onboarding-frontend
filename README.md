@@ -20,4 +20,4 @@
 
 ## 배포
 
-https://wanted-pre-onboarding-frontend-beta-six.vercel.app/signup
+https://wanted-pre-onboarding-frontend-beta-six.vercel.app
