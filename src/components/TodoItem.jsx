@@ -13,8 +13,10 @@ const TodoItem = ({
 }) => {
   return (
     <li key={todo.id} className={styles["todo-item"]}>
+      {/* 수정버튼 눌렀을 때 */}
       {editingTodoId === todo.id ? (
         <div>
+          {/* 수정내용 입력창 */}
           <input
             type="text"
             value={editingTodoText}
@@ -22,6 +24,7 @@ const TodoItem = ({
             data-testid="modify-input"
             className={styles["modify-input"]}
           />
+          {/* 수정내용 전송 버튼*/}
           <button
             onClick={() => handleSubmitEdit(todo.id)}
             data-testid="submit-button"
@@ -29,6 +32,7 @@ const TodoItem = ({
           >
             Submit
           </button>
+          {/* 수정내용 초기화 버튼*/}
           <button
             onClick={handleCancelEdit}
             data-testid="cancel-button"
@@ -38,8 +42,10 @@ const TodoItem = ({
           </button>
         </div>
       ) : (
+        // 수정버튼 누르기 전에
         <div>
           <label className={styles["label"]}>
+            {/* 리스트 수행 완료 체크박스 */}
             <input
               type="checkbox"
               checked={todo.isCompleted}
@@ -48,6 +54,7 @@ const TodoItem = ({
             />
             <span className={styles["text"]}>{todo.todo}</span>
           </label>
+          {/* 수정 버튼 */}
           <button
             onClick={() => handleEditTodo(todo.id)}
             data-testid="modify-button"
@@ -55,6 +62,7 @@ const TodoItem = ({
           >
             Edit
           </button>
+          {/* 리스트 삭제 버튼*/}
           <button
             onClick={() => handleDeleteTodo(todo.id)}
             data-testid="delete-button"

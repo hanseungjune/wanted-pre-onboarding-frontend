@@ -20,6 +20,7 @@ const Todo = () => {
     }
   }, [navigate]);
 
+  // 할일 목록 불러오기
   const fetchTodos = async (access_token) => {
     try {
       const response = await fetch(`${API_URL}/todos`, {
@@ -39,10 +40,12 @@ const Todo = () => {
     }
   };
 
+  // 새로운 할일 입력 값 처리
   const handleInputChange = (e) => {
     setNewTodo(e.target.value);
   };
 
+  // 할일 추가
   const handleAddTodo = async () => {
     if (newTodo.trim() === "") {
       return;
@@ -75,6 +78,7 @@ const Todo = () => {
     }
   };
 
+  // 할일 삭제
   const handleDeleteTodo = async (todoId) => {
     const access_token = localStorage.getItem("access_token");
 
@@ -96,6 +100,7 @@ const Todo = () => {
     }
   };
 
+  // 할일 완료 상태 변경
   const handleToggleComplete = async (todoId) => {
     const updatedTodos = todos.map((todo) => {
       if (todo.id === todoId) {
@@ -110,17 +115,20 @@ const Todo = () => {
     setTodos(updatedTodos);
   };
 
+  // 할일 수정 시작
   const handleEditTodo = (todoId) => {
     const todoToEdit = todos.find((todo) => todo.id === todoId);
     setEditingTodoId(todoId);
     setEditingTodoText(todoToEdit.todo);
   };
 
+  // 할일 수정 취소
   const handleCancelEdit = () => {
     setEditingTodoId(null);
     setEditingTodoText("");
   };
 
+  // 할일 수정 제출
   const handleSubmitEdit = async (todoId) => {
     if (editingTodoText.trim() === "") {
       return;
@@ -162,8 +170,10 @@ const Todo = () => {
 
   return (
     <div className={styles["todo-container"]}>
+      {/* todoList 제목 */}
       <h2>My TodoList</h2>
       <div className={styles["add-todo"]}>
+        {/* todoList 추가 */}
         <input
           type="text"
           value={newTodo}
@@ -179,6 +189,7 @@ const Todo = () => {
           추가
         </button>
       </div>
+      {/* todoList 보여주기 */}
       <TodoList
         todos={todos}
         editingTodoId={editingTodoId}

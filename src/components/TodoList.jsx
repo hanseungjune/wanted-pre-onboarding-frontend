@@ -12,6 +12,7 @@ const TodoList = ({
   setEditingTodoText,
 }) => {
   return (
+    // todoList 보여주기
     <ul
       style={{
         width: "300px",

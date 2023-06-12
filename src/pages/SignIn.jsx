@@ -10,7 +10,7 @@ const Signin = () => {
   const [isPasswordValid, setPasswordValid] = useState(false);
   const navigate = useNavigate();
 
-  // 토큰 있으면, /todo로 가기
+  // 토큰이 존재하면 /todo 페이지로 이동
   useEffect(() => {
     const accessToken = localStorage.getItem("access_token");
     if (accessToken) {
@@ -18,13 +18,13 @@ const Signin = () => {
     }
   }, [navigate]);
 
-  // 입력값 받기 및 유효성 검사
+  // 이메일 입력값 받기 및 유효성 검사
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailValid(e.target.value.includes("@"));
   };
 
-  // 입력값 받기 및 유효성 검사
+  // 비밀번호 입력값 받기 및 유효성 검사
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordValid(e.target.value.length >= 8);
@@ -59,8 +59,10 @@ const Signin = () => {
 
   return (
     <div className={styles["signup-container"]}>
+      {/* 로그인 제목 */}
       <h2>SignIn</h2>
       <form onSubmit={handleSubmit} className={styles["signup-form"]}>
+        {/* 이메일 입력 필드 */}
         <input
           type="email"
           value={email}
@@ -69,6 +71,8 @@ const Signin = () => {
           data-testid="email-input"
           className={styles["input"]}
         />
+
+        {/* 비밀번호 입력 필드 */}
         <input
           type="password"
           value={password}
@@ -77,6 +81,8 @@ const Signin = () => {
           data-testid="password-input"
           className={styles["input"]}
         />
+
+        {/* 로그인 버튼 */}
         <button
           type="submit"
           data-testid="signup-button"
@@ -85,6 +91,8 @@ const Signin = () => {
         >
           Submit
         </button>
+
+        {/* 회원가입 페이지로 이동하는 버튼 */}
         <button
           className={styles["button"]}
           onClick={() => {
