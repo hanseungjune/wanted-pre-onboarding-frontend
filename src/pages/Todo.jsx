@@ -71,6 +71,24 @@ const Todo = () => {
     }
   };
 
+  const handleToggleComplete = async (todoId) => {
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === todoId) {
+        return {
+          ...todo,
+          isCompleted: !todo.isCompleted,
+        };
+      }
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+  };
+
+  useEffect(() => {
+    todos.forEach((todo) => console.log(todo));
+  }, [todos]);
+
   return (
     <div
       style={{
@@ -85,7 +103,11 @@ const Todo = () => {
         {todos.map((todo) => (
           <li key={todo.id}>
             <label>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={todo.isCompleted}
+                onChange={() => handleToggleComplete(todo.id)}
+              />
               <span>{todo.todo}</span>
             </label>
           </li>
