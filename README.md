@@ -8,7 +8,8 @@
 
 ## 프로젝트 실행 방법
 
-`npm start`
+1. `npm install`
+2. `npm start`
 
 <br/>
 
