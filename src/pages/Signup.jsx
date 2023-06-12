@@ -49,10 +49,10 @@ const Signup = () => {
           console.log("Signup successful");
           navigate("/signin");
         } else {
-          console.log("Signup failed");
+          console.log("회원가입 실패");
         }
       } catch (error) {
-        console.error("Error occurred during signup:", error);
+        console.error("회원가입 에러:", error);
       }
     }
   };

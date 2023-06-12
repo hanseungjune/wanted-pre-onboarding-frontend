@@ -30,13 +30,12 @@ const Todo = () => {
       });
       if (response.status === 200) {
         const data = await response.json();
-        console.log(data);
         setTodos(data);
       } else {
-        console.log("Failed to fetch todos");
+        console.log("리스트 가져오기 실패");
       }
     } catch (error) {
-      console.error("Error occurred while fetching todos:", error);
+      console.error("리스트 가져오기 에러:", error);
     }
   };
 
@@ -67,14 +66,13 @@ const Todo = () => {
 
       if (response.status === 201) {
         const data = await response.json();
-        console.log(data);
         setTodos([...todos, data]);
         setNewTodo("");
       } else {
-        console.log("Failed to add todo");
+        console.log("리스트 추가하기 실패");
       }
     } catch (error) {
-      console.error("Error occurred while adding todo:", error);
+      console.error("리스트 추가하기 에러:", error);
     }
   };
 
@@ -93,10 +91,10 @@ const Todo = () => {
       if (response.status === 204) {
         setTodos(todos.filter((todo) => todo.id !== todoId));
       } else {
-        console.log("Failed to delete todo");
+        console.log("리스트 삭제하기 실패");
       }
     } catch (error) {
-      console.error("Error occurred while deleting todo:", error);
+      console.error("리스트 삭제하기 에러:", error);
     }
   };
 
@@ -161,10 +159,10 @@ const Todo = () => {
         setEditingTodoId(null);
         setEditingTodoText("");
       } else {
-        console.log("Failed to update todo");
+        console.log("리스트 수정하기 실패");
       }
     } catch (error) {
-      console.error("Error occurred while updating todo:", error);
+      console.error("리스트 수정하기 에러:", error);
     }
   };
 

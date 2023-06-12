@@ -50,10 +50,10 @@ const Signin = () => {
         localStorage.setItem("access_token", accessToken);
         navigate("/todo");
       } else {
-        console.log("Login failed");
+        console.log("로그인 실패");
       }
     } catch (error) {
-      console.error("Error occurred during login:", error);
+      console.error("로그인 에러:", error);
     }
   };
 
