@@ -11,6 +11,7 @@ const Todo = () => {
   const [editingTodoText, setEditingTodoText] = useState("");
   const navigate = useNavigate();
 
+  // 토큰이 없으면 로그인 페이지로
   useEffect(() => {
     const access_token = localStorage.getItem("access_token");
     if (!access_token) {
