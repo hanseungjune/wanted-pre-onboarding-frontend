@@ -20,4 +20,4 @@
 
 ## 배포
 
-`링크`
+https://main--leafy-kleicha-bc6900.netlify.app/
