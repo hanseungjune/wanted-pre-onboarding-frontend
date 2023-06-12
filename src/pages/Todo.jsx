@@ -114,6 +114,50 @@ const Todo = () => {
     setEditingTodoText(todoToEdit.todo);
   };
 
+  const handleCancelEdit = () => {
+    setEditingTodoId(null);
+    setEditingTodoText("");
+  };
+
+  const handleSubmitEdit = async (todoId) => {
+    if (editingTodoText.trim() === "") {
+      return;
+    }
+
+    const access_token = localStorage.getItem("access_token");
+
+    try {
+      const response = await fetch(`${API_URL}/todos/${todoId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          todo: editingTodoText,
+          isCompleted: false, // 할 일 수정하면, 초기화
+        }),
+      });
+
+      if (response.status === 200) {
+        const updatedTodo = await response.json();
+        const updatedTodos = todos.map((todo) => {
+          if (todo.id === updatedTodo.id) {
+            return updatedTodo;
+          }
+          return todo;
+        });
+        setTodos(updatedTodos);
+        setEditingTodoId(null);
+        setEditingTodoText("");
+      } else {
+        console.log("Failed to update todo");
+      }
+    } catch (error) {
+      console.error("Error occurred while updating todo:", error);
+    }
+  };
+
   return (
     <div
       style={{
@@ -136,15 +180,12 @@ const Todo = () => {
                   data-testid="modify-input"
                 />
                 <button
-                  //   onClick={() => handleSubmitEdit(todo.id)}
+                  onClick={() => handleSubmitEdit(todo.id)}
                   data-testid="submit-button"
                 >
                   제출
                 </button>
-                <button
-                  // onClick={handleCancelEdit}
-                  data-testid="cancel-button"
-                >
+                <button onClick={handleCancelEdit} data-testid="cancel-button">
                   취소
                 </button>
               </div>
